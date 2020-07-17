@@ -41,7 +41,8 @@
 <card-container>
 
 <template slot="title">Add Menu Item</template>
-<template slot="body">My Menu body
+<template slot="body">
+<menu-add-form :categories="categories"></menu-add-form>
 </template>
 </card-container>
 </div>
@@ -54,12 +55,14 @@
 <script>
 import Multiselect from 'vue-multiselect';
 import _ from 'lodash';
+import MenuAddForm from './MenuAddForm.vue';
 export default
 {
 props:['items'],
 components:
 {
-Multiselect
+Multiselect,
+'menu-add-form':MenuAddForm
 },
 created()
 {
