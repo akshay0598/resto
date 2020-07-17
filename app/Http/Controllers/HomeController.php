@@ -24,7 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-    $menus=Menu::all();
-        return view('home',compact('menus'));
+      $resto_id=[1];
+      $categories =Menu::whereIn('resto_id',$resto_id)->get()->groupBy('category.name');
+        return view('home',compact('categories'));
     }
 }
