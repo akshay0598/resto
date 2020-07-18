@@ -42,7 +42,7 @@
 
 <template slot="title">Add Menu Item</template>
 <template slot="body">
-<menu-add-form :categories="categories"></menu-add-form>
+<menu-add-form :categories="categories" :resto-id="restoId"></menu-add-form>
 </template>
 </card-container>
 </div>
@@ -58,7 +58,7 @@ import _ from 'lodash';
 import MenuAddForm from './MenuAddForm.vue';
 export default
 {
-props:['items'],
+props:['items','restoId'],
 components:
 {
 Multiselect,

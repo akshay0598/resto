@@ -1,18 +1,21 @@
 {
   "ExpandedNodes": [
     "",
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Http\\Controllers",
+    "\\app\\Http\\Controllers\\Auth",
+    "\\app\\Models",
+    "\\app\\Rules",
+    "\\config",
     "\\database",
     "\\database\\factories",
     "\\database\\seeds",
-    "\\public",
     "\\resources",
-    "\\resources\\views",
-    "\\resources\\views\\layouts",
-    "\\routes",
-    "\\tests",
-    "\\tests\\Feature",
-    "\\tests\\Unit"
+    "\\resources\\js",
+    "\\resources\\js\\modules",
+    "\\resources\\js\\modules\\menu",
+    "\\resources\\views"
   ],
-  "SelectedNode": "\\database\\factories\\CategoryFactory.php",
   "PreviewInSolutionExplorer": false
 }
