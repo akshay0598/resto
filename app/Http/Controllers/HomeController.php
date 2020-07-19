@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Menu;
+use App\Services\RestoService;
 
 class HomeController extends Controller
 {
@@ -22,10 +23,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(RestoService $restoService)
     {
       $restoId=1;
+     
+
       $categories =Menu::where('resto_id',$restoId)->get()->groupBy('category.name');
-        return view('home',compact('categories','restoId'));
+
+      $restos=$restoService->userRestoAndTables();
+        return view('home',compact('categories','restoId','restos'));
     }
 }
