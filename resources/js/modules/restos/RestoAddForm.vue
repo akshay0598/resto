@@ -7,7 +7,7 @@
 </div>
 <div class="form-group">
 <label for="address">Address</label>
-<input type = "text" class="form-control" placeholder="Enter Restaurant Address" name="address" v-model="resto.address"/>
+<input type = "text" class="form-control" placeholder="Enter Restaurant Address" name="location" v-model="resto.location"/>
 </div>
 <div class="form-group">
 <label for="tables">No of Tables</label>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from  'axios';
 export default{
 data(){
 return{
@@ -27,7 +28,7 @@ resto:this.basicResto()
 },
 methods:{
 basicResto() {
-return { name:"", address:"", tables:0 }
+return { name:"", location:"", tables:0 }
 },
 handleAddButton(){
  this.$emit('addNewResto',this.resto);

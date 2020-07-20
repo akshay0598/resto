@@ -20,6 +20,7 @@ class CreateRestaurantsTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->unsignedInteger('owner_id');
+            $table->integer('tables')->default(1);
             $table->timestamps();
 
             $table->foreign('owner_id')

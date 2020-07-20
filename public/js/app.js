@@ -1942,6 +1942,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-multiselect */ "./node_modules/vue-multiselect/dist/vue-multiselect.min.js");
 /* harmony import */ var vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_multiselect__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _utils_Validation_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../utils/Validation.js */ "./resources/js/utils/Validation.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 //
 //
 //
@@ -1974,6 +1976,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2124,6 +2127,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2144,6 +2149,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2154,7 +2160,7 @@ __webpack_require__.r(__webpack_exports__);
     basicResto: function basicResto() {
       return {
         name: "",
-        address: "",
+        location: "",
         tables: 0
       };
     },
@@ -2180,6 +2186,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RestoAddForm_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./RestoAddForm.vue */ "./resources/js/modules/restos/RestoAddForm.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 //
 //
 //
@@ -2210,14 +2218,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    this.local = this.restos;
+  },
+  data: function data() {
+    return {
+      local: []
+    };
+  },
   props: ['restos'],
   components: {
     RestoAddForm: _RestoAddForm_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
   computed: {
     showAddForm: function showAddForm() {
-      return this.restos.length < 5 ? true : false;
+      return this.local.length < 5 ? true : false;
     }
   },
   methods: {
@@ -2228,7 +2245,18 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.hide('add-new-resto');
     },
     handleAddResto: function handleAddResto(resto) {
+      var _this = this;
+
       console.log('resto', resto);
+      window.axios.post('/api/resto', resto).then(function (response) {
+        console.log('response', response.data);
+
+        _this.local.unshift(response.data);
+
+        _this.$modal.hide('add-new-resto');
+      })["catch"](function (error) {
+        console.log('error', error.response);
+      });
     }
   }
 });
@@ -38829,23 +38857,23 @@ var render = function() {
           {
             name: "model",
             rawName: "v-model",
-            value: _vm.resto.address,
-            expression: "resto.address"
+            value: _vm.resto.location,
+            expression: "resto.location"
           }
         ],
         staticClass: "form-control",
         attrs: {
           type: "text",
           placeholder: "Enter Restaurant Address",
-          name: "address"
+          name: "location"
         },
-        domProps: { value: _vm.resto.address },
+        domProps: { value: _vm.resto.location },
         on: {
           input: function($event) {
             if ($event.target.composing) {
               return
             }
-            _vm.$set(_vm.resto, "address", $event.target.value)
+            _vm.$set(_vm.resto, "location", $event.target.value)
           }
         }
       })
@@ -38921,7 +38949,7 @@ var render = function() {
       "div",
       { staticClass: "row" },
       [
-        _vm._l(_vm.restos, function(resto) {
+        _vm._l(_vm.local, function(resto) {
           return _c(
             "div",
             { key: resto.id, staticClass: "col-md-4 mb-4" },
@@ -51694,8 +51722,8 @@ var Validation = /*#__PURE__*/function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\Xamp111\htdocs\resto\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\Xamp111\htdocs\resto\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Xamp111\htdocs\resto\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Xamp111\htdocs\resto\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

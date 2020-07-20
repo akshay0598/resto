@@ -33,8 +33,10 @@
 <script>
 import Multiselect from 'vue-multiselect';
 import Validation from './../../utils/Validation.js';
+import axios from  'axios';
 export default{
 props:['categories','restoId'],
+
 data()
 {
 return{

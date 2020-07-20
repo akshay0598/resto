@@ -1,14 +1,14 @@
 {
   "ExpandedNodes": [
-    "\\resources",
-    "\\resources\\js",
-    "\\resources\\js\\components",
-    "\\resources\\js\\modules",
-    "\\resources\\js\\modules\\restos",
-    "\\resources\\views",
-    "\\resources\\views\\auth",
-    "\\resources\\views\\auth\\passwords"
+    "",
+    "\\app",
+    "\\app\\Providers",
+    "\\app\\Services",
+    "\\database",
+    "\\database\\factories",
+    "\\database\\migrations",
+    "\\database\\seeds",
+    "\\routes"
   ],
-  "SelectedNode": "\\resources\\js\\modules\\restos\\RestoAddForm.vue",
   "PreviewInSolutionExplorer": false
 }
