@@ -4,7 +4,12 @@
 <div class="col-md-4 mb-4" v-for="resto in local" :key="resto.id">
 <card-container>
 <template slot="title">{{resto.name}}</template>
-<template slot="body">{{resto.location}}</template>
+<template slot="body">{{resto.location}}
+<br>
+<a v-bind:href = "resto.slug" class="card-link">View Menu</a>
+<a v-bind:href = "resto.ordersSlug" class="card-link">Orders</a>
+
+</template>
 </card-container>
 </div>
 

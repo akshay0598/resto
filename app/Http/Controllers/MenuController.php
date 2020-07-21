@@ -9,6 +9,12 @@ use App\Models\Category;
 
 class MenuController extends Controller
 {
+    public function index($id){
+    $restoId=1;
+   $menus =Menu::where('resto_id',$restoId)->get()->groupBy('category.name');
+    return view('menu-index',compact('menus','restoId'));
+
+    }
     public function saveMenuItem(Request $request)
     {
       $postData = $this->validate($request,[

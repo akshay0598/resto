@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
+use App\Services\RestoService;
 
 class RestaurantController extends Controller
 {
@@ -19,5 +20,12 @@ class RestaurantController extends Controller
     
 
     return response()->json($resto,201);
+    }
+    public function index(RestoService $restoService)
+    {
+
+     $restos=$restoService->userRestoAndTables();
+    return view('resto-index',compact('restos'));
+
     }
 }
