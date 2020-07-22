@@ -26,5 +26,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/restos', 'RestaurantController@index')->name('restos');
 Route::get('/restos/menu/{id}', 'MenuController@index')->name('restos.menu');
 Route::get('/restos/order/{id}', 'RestoOrderController@index')->name('resto.orders');
+Route::get('/restos/order/{id}/add', 'RestoOrderController@add')->name('orders.add');
+
 
 });

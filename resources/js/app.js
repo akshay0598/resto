@@ -5,6 +5,7 @@ import Vue from 'vue';
 import MenuContainer from './modules/menu/MenuContainer.vue';
 import CardContainer from './components/Card.vue';
 import RestoGroup from './modules/restos/RestoGroup';
+import OrderGroup from './modules/orders/OrderGroup.vue';
 import Turbolinks from 'turbolinks';
 
 import TurbolinksAdaptar from 'vue-turbolinks';
@@ -15,7 +16,10 @@ Turbolinks.start();
 Vue.component('menu-container',MenuContainer);
 Vue.component('card-container',CardContainer);
 Vue.component('resto-group',RestoGroup);
+Vue.component('order-group',OrderGroup);
+
 Vue.use(VModal);
+window.eventBus = new Vue({});
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -24,7 +28,7 @@ if(element != null){
 const app=new Vue({
 el: element,
 components:
-{MenuContainer,CardContainer,RestoGroup
+{MenuContainer,CardContainer,RestoGroup,OrderGroup
     }
 
 });

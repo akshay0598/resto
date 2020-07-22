@@ -5,9 +5,15 @@
 
 
     <div class="row ">
-    <h2>Manage Orders</h2>
-    <table class="table table-striped table-hover table-bordered">
-    
+    <div class="col-md-12">
+    <h2>Manage Orders for {{ $resto->name}}</h2>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-12">
+    <a href="{{ route('orders.add',$resto->id) }}" class="btn btn-primary">Add Order</a>
+    <table class="table table-striped table-hover table-bordered float-right" style="margin:10px;float:right">
     <tr>
     <thead>
     <th>Order Id</th>
@@ -34,6 +40,6 @@
        </tbody>
        </table>
     </div>
-    
+    </div>
 </div>
 @endsection

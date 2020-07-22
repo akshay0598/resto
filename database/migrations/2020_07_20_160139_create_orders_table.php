@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('resto_id');
             $table->unsignedInteger('user_id');
-            $table->float('amount','8',2);
+            $table->float('amount',8,2);
             $table->boolean('isComplete')->default(0);
             $table->json('order_details');
             
