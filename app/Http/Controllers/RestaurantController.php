@@ -28,4 +28,6 @@ class RestaurantController extends Controller
     return view('resto-index',compact('restos'));
 
     }
+   
+
 }

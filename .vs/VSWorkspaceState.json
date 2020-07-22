@@ -1,13 +1,7 @@
 {
   "ExpandedNodes": [
     "",
-    "\\database",
-    "\\database\\migrations",
-    "\\resources",
-    "\\resources\\js",
-    "\\resources\\js\\modules",
-    "\\resources\\js\\modules\\orders"
+    "\\routes"
   ],
-  "SelectedNode": "\\database\\migrations\\2020_07_20_160139_create_orders_table.php",
   "PreviewInSolutionExplorer": false
 }
