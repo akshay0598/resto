@@ -55,6 +55,8 @@ window.eventBus.$on('menuItemAdded',this.handleNewMenuItem);
 window.eventBus.$on('filteredList',this.handleFilteredList);
 window.eventBus.$on('clearfilteredList',this.handleEmpty);
 window.eventBus.$emit('customerDetailsChanged',this.customerDetailsHandle);
+window.eventBus.$on('removeOrderItem',this.handleRemoveOrderedItem);
+
 },
 computed:{
 finalAmount(){
@@ -72,6 +74,11 @@ window.axios.post('/api/resto/menu',postData)
 .then(response => console.log('response',this.menuItems = response.data,
 this.originalMenuItems=response.data))
 .catch(error => console.log('error',error.response));
+
+},
+handleRemoveOrderedItem(item){
+this.orderDetails=this.orderDetails.filter(orderItem => orderItem.id !=item.id);
+
 
 },
 handleNewMenuItem(item){

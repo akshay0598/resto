@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\routes"
+    "\\app",
+    "\\app\\Http"
   ],
   "PreviewInSolutionExplorer": false
 }
