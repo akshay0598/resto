@@ -24,4 +24,8 @@ Route::group(['middleware' => ['auth:api']],function(){
 Route::post('/resto','RestaurantController@store');
 Route::post('/resto/menu','MenuController@getRestaurantMenu');
 Route::post('/order/save','RestoOrderController@store');
+Route::post('/order/complete','RestoOrderController@complete');
+Route::post('/order/remove','RestoOrderController@remove');
+
+
 });

@@ -69,4 +69,16 @@ class RestoOrderController extends Controller
     }
     return response()->json($order,200);
     }
+    public function complete(Request $request){
+
+    $order=Order::find($request['order_id']);
+    $order->isComplete=1;
+    $order->save();
+    return response()->json($order,201);
+    }
+    public function remove(Request $request){
+
+    $order=Order::where('id',$request['order_id'])->delete();
+    return response()->json($order,201);
+    }
 }

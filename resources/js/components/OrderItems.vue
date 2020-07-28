@@ -11,8 +11,8 @@
 
 
     </td>
-    <td><button class = "btn btn-success" >Completed</button><br><br>
-    <button class = "btn btn-danger" >Cancel</button></td>
+    <td><button class = "btn btn-success" @click="clickComplete(order)">Completed</button>
+    <button class = "btn btn-danger ml-3" @click="clickDelete(order)" >Cancel</button></td>
 
     </tr>
     </tbody>
@@ -20,6 +20,14 @@
 
 <script>
 export default{
-props:['orders']
+props:['orders'],
+methods:{
+clickComplete(order){
+this.$emit("onComplete",order);
+},
+clickDelete(order){
+this.$emit("onDelete",order);
+}
+}
 }
 </script>

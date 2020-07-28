@@ -1960,7 +1960,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['orders']
+  props: ['orders'],
+  methods: {
+    clickComplete: function clickComplete(order) {
+      this.$emit("onComplete", order);
+    },
+    clickDelete: function clickDelete(order) {
+      this.$emit("onDelete", order);
+    }
+  }
 });
 
 /***/ }),
@@ -2162,7 +2170,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_OrderItems_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../components/OrderItems.vue */ "./resources/js/components/OrderItems.vue");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components_OrderItems_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../../components/OrderItems.vue */ "./resources/js/components/OrderItems.vue");
 //
 //
 //
@@ -2179,10 +2189,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['orders'],
+  data: function data() {
+    return {
+      localOrders: null
+    };
+  },
+  created: function created() {
+    this.localOrders = this.orders;
+  },
   components: {
-    OrderItems: _components_OrderItems_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    OrderItems: _components_OrderItems_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  methods: {
+    handleComplete: function handleComplete(order) {
+      var _this = this;
+
+      if (!confirm("Are you sure your order is complete?")) {
+        return;
+      }
+
+      var postData = {
+        order_id: order.id
+      };
+      window.axios.post('/api/order/complete', postData).then(function (response) {
+        _this.localOrders.data.forEach(function (order, index) {
+          if (order.id === response.data.id) {
+            _this.localOrders.data[index].isComplete = 1;
+          }
+        });
+      });
+    },
+    handleDelete: function handleDelete(order) {
+      var _this2 = this;
+
+      if (!confirm("Are you sure you want your order to be deleted?")) {
+        return;
+      }
+
+      var postData = {
+        order_id: order.id
+      };
+      window.axios.post('/api/order/remove', postData).then(function (response) {
+        _this2.localOrders.data = _this2.localOrders.data.filter(function (localOrder) {
+          return localOrder.id !== order.id;
+        });
+      });
+    }
   }
 });
 
@@ -38960,26 +39015,39 @@ var render = function() {
           _c("br")
         ]),
         _vm._v(" "),
-        _vm._m(0, true)
+        _c("td", [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              on: {
+                click: function($event) {
+                  return _vm.clickComplete(order)
+                }
+              }
+            },
+            [_vm._v("Completed")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-danger ml-3",
+              on: {
+                click: function($event) {
+                  return _vm.clickDelete(order)
+                }
+              }
+            },
+            [_vm._v("Cancel")]
+          )
+        ])
       ])
     }),
     0
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Completed")]),
-      _c("br"),
-      _c("br"),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Cancel")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -39316,7 +39384,10 @@ var render = function() {
     [
       _vm._m(0),
       _vm._v(" "),
-      _c("order-items", { attrs: { orders: _vm.orders.data } })
+      _c("order-items", {
+        attrs: { orders: _vm.orders.data },
+        on: { onComplete: _vm.handleComplete, onDelete: _vm.handleDelete }
+      })
     ],
     1
   )
